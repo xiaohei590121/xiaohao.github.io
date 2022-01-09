@@ -2,7 +2,7 @@
 layout:     post
 title:      "C++ - SASM 환경설정 & Assembly"
 subtitle:   "SASM 설치하고 어셈블리 알아보기"
-date:       2021-09-18 12:00:00
+date:       2021-01-09 12:00:00
 author:     "yu2jeong"
 header-style: text
 catalog: true
@@ -121,5 +121,7 @@ section .data
 ## 4) 메모리 구조
 
 ![SASMSetting5](/img/in-post/cpluscplus/2022-01-09-study-cpluscplus/SASMSetting5.png)
+
+
 
 - Yu2jeong Blog.
