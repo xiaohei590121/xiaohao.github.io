@@ -1,7 +1,7 @@
 [Hux Blog](https://huangxuan.me)
 ================================
 
-> I never expected this becomes popular.
+> I never expect this becomes popular.
 
 ![](http://huangxuan.me/img/blog-desktop.jpg)
 
@@ -50,7 +50,7 @@ Ports
 - Out of date. Helps wanted for updating it on par with the main repo
 
 Translation
-- [🇨🇳 (somewhat outdated)](https://github.com/Huxpro/huxpro.github.io/blob/master/_doc/README.zh.md)
+- [🇨🇳  中文文档（有点过时）](https://github.com/Huxpro/huxpro.github.io/blob/master/_doc/README.zh.md)
 
 
 License
