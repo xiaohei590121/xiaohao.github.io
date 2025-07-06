@@ -1,63 +1,50 @@
-[Hux Blog](https://huangxuan.me)
-================================
+# 我的 AI 探索空間
 
-> I never expected this to become popular.
+這是一個專注於人工智慧、機器學習和相關技術的個人部落格。
+本專案 Fork 自 [Hux Blog](https://github.com/Huxpro/huxpro.github.io) 並進行了修改以符合 AI 主題。
 
-![](http://huangxuan.me/img/blog-desktop.jpg)
+![](https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80) <!-- 建議替換成您網站的截圖 -->
 
-
-[User Manual 👉](_doc/Manual.md)
+[原專案使用者手冊 (英文) 👉](_doc/Manual.md)
 --------------------------------------------------
+以下啟動和開發指南主要基於原 Hux Blog 專案。
 
-### Getting Started
+### 開始使用 (Getting Started)
 
-1. You will need [Ruby](https://www.ruby-lang.org/en/) and [Bundler](https://bundler.io/) to use [Jekyll](https://jekyllrb.com/). Following [Using Jekyll with Bundler](https://jekyllrb.com/tutorials/using-jekyll-with-bundler/) to fullfill the enviromental requirement.
+1.  您需要 [Ruby](https://www.ruby-lang.org/en/) 和 [Bundler](https://bundler.io/) 來使用 [Jekyll](https://jekyllrb.com/)。請參考 [Using Jekyll with Bundler](https://jekyllrb.com/tutorials/using-jekyll-with-bundler/) 完成環境配置。
 
-2. Installed dependencies in the `Gemfile`:
+2.  安裝 `Gemfile` 中的依賴：
 
 ```sh
 $ bundle install 
 ```
 
-3. Serve the website (`localhost:4000` by default):
+3.  啟動網站 (預設網址為 `localhost:4000`)：
 
 ```sh
-$ bundle exec jekyll serve  # alternatively, npm start
+$ bundle exec jekyll serve  # 或者使用 npm start (如果 package.json 中有設定)
 ```
 
-### Development (Build From Source)
+### 開發 (Development)
 
-To modify the theme, you will need [Grunt](https://gruntjs.com/). There are numbers of tasks you can find in the `Gruntfile.js`, includes minifing JavaScript, compiling `.less` to `.css`, adding banners to keep the Apache 2.0 license intact, watching for changes, etc. 
+若要修改主題，您可能需要 [Grunt](https://gruntjs.com/) (原專案使用)。`Gruntfile.js` 中包含了一些任務，例如最小化 JavaScript、編譯 `.less` 到 `.css` 等。
 
-Yes, they were inherited and are extremely old-fashioned. There is no modularization and transpilation, etc.
+Jekyll 相關的核心程式碼位於 `_include/` 和 `_layouts/`。其中大部分是 [Liquid](https://github.com/Shopify/liquid/wiki) 模板。
 
-Critical Jekyll-related code are located in `_include/` and `_layouts/`. Most of them are [Liquid](https://github.com/Shopify/liquid/wiki) templates.
+此主題使用 Jekyll 的預設語法高亮工具 [Rouge](http://rouge.jneen.net/)。
 
-This theme uses the default code syntax highlighter of jekyll, [Rouge](http://rouge.jneen.net/), which is compatible with Pygments theme so just pick any pygments theme css (e.g. from [here](http://jwarby.github.io/jekyll-pygments-themes/languages/javascript.html) and replace the content of `highlight.less`.
-
-
-### Interesting to know more? Checkout the [full user manual](_doc/Manual.md)!
+### 想了解更多原專案的資訊？請查閱 [完整使用者手冊 (英文)](_doc/Manual.md)！
 
 
-Other Resources
+授權 (License)
 ---------------
-
-Ports
-- [**Hexo**](https://github.com/Kaijun/hexo-theme-huxblog) by @kaijun
-- [**React-SSR**](https://github.com/LucasIcarus/huxpro.github.io/tree/ssr) by @LucasIcarus
-
-[Starter/Boilerplate](https://github.com/huxpro/huxblog-boilerplate)
-- Out of date. Helps wanted for updating it on par with the main repo
-
-Translation
-- [🇨🇳  中文文档（有点过时）](https://github.com/Huxpro/huxpro.github.io/blob/master/_doc/README.zh.md)
-
-
-License
--------
 
 Apache License 2.0.
 Copyright (c) 2015-present Huxpro
 
-Hux Blog is derived from [Clean Blog Jekyll Theme (MIT License)](https://github.com/BlackrockDigital/startbootstrap-clean-blog-jekyll/)
+本部落格主題衍生自 [Clean Blog Jekyll Theme (MIT License)](https://github.com/BlackrockDigital/startbootstrap-clean-blog-jekyll/)
 Copyright (c) 2013-2016 Blackrock Digital LLC.
+
+---
+
+感謝原作者 Huxpro 的出色工作！

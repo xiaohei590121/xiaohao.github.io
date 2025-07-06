@@ -1,10 +1,10 @@
 # Site settings
-title: LeoHu Blog
-SEOTitle: LeoHu的博客 | LeoHu Blog
-header-img: img/home-bg.jpg
+title: 我的 AI 探索空間
+SEOTitle: 我的 AI 探索空間 | AI Blog
+header-img: https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80 # 建議替換成您自己的 AI 主題圖片路徑，例如 img/ai-header-bg.jpg
 email: leohu0710@gmail.com
-description: "這裡是 @LeoHu 的個人博客"
-keyword: "LeoHu"
+description: "這裡是我的 AI 學習與分享園地"
+keyword: "人工智慧, AI, 機器學習, 深度學習"
 url: "https://LeoHu.github.io" # your host, for absolute URL
 baseurl: "" # for example, '/blog' if your blog hosted on 'host/blog'
 
@@ -15,7 +15,7 @@ future: true
 RSS: false
 weibo_username: LeoHu
 zhihu_username: LeoHu
-github_username: LeoHu
+github_username: LeoHu # 請替換成您的 GitHub 用戶名
 twitter_username: LeoHu
 facebook_username: LeoHu
 #linkedin_username:  LeoHu
@@ -36,7 +36,7 @@ exclude:
   ]
 anchorjs: true # if you want to customize anchor. check out line:181 of `post.html`
 # If you have timezone issue (e.g. #68) in China, uncomment to use this:
-#timezone: CN
+timezone: Asia/Taipei
 
 # Gems
 # from PR#40, to support local preview for Jekyll 3.0
@@ -70,12 +70,12 @@ netease_comment: false
 
 # Google Analytics
 ga_track_id: "UA-XXXXX-Y" # Please use your own track id
-ga_domain: LeoHu.github.io # Please use your own domain
+ga_domain: LeoHu.github.io # Please use your own domain, and update "url" above
 
 # Sidebar settings
 sidebar: true # whether or not using Sidebar.
-sidebar-about-description: "要做一个有 swag 的程序员 <br> React Team @ Meta"
-sidebar-avatar: https://github.com/LeoHu.png # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-about-description: "對人工智慧充滿好奇的探索者 <br> 分享學習 AI 的筆記與心得"
+sidebar-avatar: https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80 # 建議替換成您自己的頭像圖片路徑或 URL
 
 # Featured Tags
 featured-tags: true # whether or not using Feature-Tags
@@ -89,14 +89,4 @@ service-worker: true
 page-mathjax: false
 
 # Friends
-friends:
-  [
-    { title: "乱序（Midare）", href: "http://mida.re/" },
-    { title: "Ebn Zhang", href: "https://ebnbin.dev/" },
-    { title: "Kun Qian", href: "http://kunq.me" },
-    { title: "Sherry Woo", href: "https://sherrywoo.me/" },
-    { title: "SmdCn", href: "http://blog.smdcn.net" },
-    { title: "JiyinYiyong", href: "http://tiye.me/" },
-    { title: "DHong Say", href: "http://dhong.co" },
-    { title: "尹峰以为", href: "http://ingf.github.io/" },
-  ]
+friends: []
