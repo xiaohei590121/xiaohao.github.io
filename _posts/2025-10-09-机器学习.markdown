@@ -1,0 +1,12 @@
+---
+layout:     post
+title:      "机器学习中的PAC理论是什么"
+date:       2025-10-09 12:00:00
+author:     "小绿豆"
+header-img: "img/post-bg-miui6.jpg"
+tags:
+    - 机器学习
+    - 概率论
+---
+
+PAC理论可以说是机器学习的理论基石
