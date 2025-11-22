@@ -1,0 +1,42 @@
+{% comment %}
+Image Component
+Displays images with proper alt text, title, and caption from page configuration
+Usage: {% include image.html id="image_id" %}
+{% endcomment %}
+
+{% assign img_id = include.id %}
+{% assign img_data = nil %}
+
+{% comment %} Find image in page.images {% endcomment %}
+{% if page.images %}
+  {% if page.images.header and page.images.header.id == img_id %}
+    {% assign img_data = page.images.header %}
+  {% endif %}
+
+  {% if page.images.gallery %}
+    {% for img in page.images.gallery %}
+      {% if img.id == img_id %}
+        {% assign img_data = img %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endif %}
+
+{% if img_data %}
+<figure class="post-image" style="margin: 2rem 0; text-align: center;">
+  <img src="{{ img_data.src | prepend: site.baseurl }}"
+       alt="{{ img_data.alt }}"
+       {% if img_data.title %}title="{{ img_data.title }}"{% endif %}
+       loading="lazy"
+       style="max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+  {% if img_data.caption %}
+  <figcaption style="margin-top: 0.5rem; font-size: 0.9em; color: #6c757d; font-style: italic;">
+    {{ img_data.caption }}
+  </figcaption>
+  {% endif %}
+</figure>
+{% else %}
+  {% comment %} Fallback if image not found in config {% endcomment %}
+  <p style="color: red; font-style: italic;">Image "{{ img_id }}" not found in page images configuration</p>
+{% endif %}

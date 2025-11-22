@@ -20,12 +20,40 @@ layout: default
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <!-- Multi-Lingual -->
-                {% if page.multilingual %}
-                    {% include multilingual-sel.html %}
+                <!-- Breadcrumb Navigation -->
+                {% include breadcrumbs.html %}
+
+                <!-- Reading Time and Word Count -->
+                {% if site.data.site.reading.show_reading_time %}
+                <div class="post-meta-info" style="margin: 1rem 0; color: #999; font-size: 0.9em;">
+                    {% assign reading_minutes = content | reading_time %}
+                    {% if page.reading_time %}
+                        {% assign reading_minutes = page.reading_time %}
+                    {% endif %}
+                    <span class="reading-time">
+                        <i class="fa fa-clock-o"></i> {{ reading_minutes }} min read
+                    </span>
+                    {% if site.data.site.reading.show_word_count %}
+                        {% assign words = content | word_count %}
+                        {% if page.word_count %}
+                            {% assign words = page.word_count %}
+                        {% endif %}
+                        <span class="word-count" style="margin-left: 1rem;">
+                            <i class="fa fa-file-text-o"></i> {{ words }} words
+                        </span>
+                    {% endif %}
+                </div>
                 {% endif %}
 
 				{{ content }}
+
+                <!-- Author Card -->
+                {% include author-card.html %}
+
+                <!-- Related Posts -->
+                {% if site.data.site.related_posts.show_at_bottom %}
+                {% include related-posts.html %}
+                {% endif %}
 
                 <hr style="visibility: hidden;">
                 <ul class="pager">

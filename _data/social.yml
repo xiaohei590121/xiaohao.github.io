@@ -1,0 +1,54 @@
+# Social Media Configuration
+# Configure your social media profiles
+
+# Social Platforms
+# Set enabled: true for platforms you want to display
+platforms:
+  twitter:
+    enabled: true
+    username: "recomby_ai"
+    url: "https://twitter.com/recomby_ai"
+
+  github:
+    enabled: true
+    username: "recomby-ai"
+    url: "https://github.com/recomby-ai"
+
+  linkedin:
+    enabled: false
+    username: ""
+    url: ""
+
+  facebook:
+    enabled: false
+    username: ""
+    url: ""
+
+  youtube:
+    enabled: false
+    username: ""
+    url: ""
+
+  instagram:
+    enabled: false
+    username: ""
+    url: ""
+
+  medium:
+    enabled: false
+    username: ""
+    url: ""
+
+  reddit:
+    enabled: false
+    username: ""
+    url: ""
+
+# Social Sharing
+# Configure which platforms to show in share buttons
+sharing:
+  twitter: true
+  linkedin: true
+  facebook: false
+  reddit: false
+  email: true

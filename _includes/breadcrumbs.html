@@ -1,0 +1,121 @@
+{% comment %}
+Breadcrumb Navigation Component
+Generates breadcrumb navigation with Schema.org markup
+{% endcomment %}
+
+{% if site.data.breadcrumbs.enabled %}
+{% assign breadcrumb_config = site.data.breadcrumbs %}
+{% assign separator = breadcrumb_config.separator | default: "/" %}
+{% assign home_label = breadcrumb_config.home_label | default: "Home" %}
+
+<nav aria-label="breadcrumb" class="{{ breadcrumb_config.css.wrapper | default: 'breadcrumbs' }}">
+  <ol class="{{ breadcrumb_config.css.list | default: 'breadcrumb-list' }}" itemscope itemtype="https://schema.org/BreadcrumbList">
+
+    <!-- Home -->
+    <li class="{{ breadcrumb_config.css.item | default: 'breadcrumb-item' }}" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="{{ site.baseurl }}/" itemprop="item">
+        <span itemprop="name">{{ home_label }}</span>
+      </a>
+      <meta itemprop="position" content="1" />
+    </li>
+
+    {% if page.breadcrumb_path %}
+      {% comment %} Manual breadcrumb path from front matter {% endcomment %}
+      {% for crumb in page.breadcrumb_path %}
+        <li class="{{ breadcrumb_config.css.separator | default: 'separator' }}" aria-hidden="true">{{ separator }}</li>
+        <li class="{{ breadcrumb_config.css.item | default: 'breadcrumb-item' }}" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="{{ crumb.url | prepend: site.baseurl }}" itemprop="item">
+            <span itemprop="name">{{ crumb.label }}</span>
+          </a>
+          <meta itemprop="position" content="{{ forloop.index | plus: 1 }}" />
+        </li>
+      {% endfor %}
+
+    {% else %}
+      {% comment %} Auto-generate breadcrumb from URL {% endcomment %}
+      {% assign url_parts = page.url | split: '/' %}
+      {% assign crumb_path = '' %}
+      {% assign position = 2 %}
+
+      {% for part in url_parts %}
+        {% if part != '' and part != 'index.html' and forloop.last == false %}
+          {% assign crumb_path = crumb_path | append: '/' | append: part %}
+          {% assign crumb_label = part | replace: '-', ' ' | replace: '_', ' ' | capitalize %}
+
+          {% comment %} Use custom labels if defined {% endcomment %}
+          {% if breadcrumb_config.custom_labels[part] %}
+            {% assign crumb_label = breadcrumb_config.custom_labels[part] %}
+          {% endif %}
+
+          {% comment %} Check if this is a date part (year/month/day are numbers) {% endcomment %}
+          {% assign is_date = false %}
+          {% if part == part | plus: 0 | append: '' %}
+            {% assign is_date = true %}
+          {% endif %}
+
+          <li class="{{ breadcrumb_config.css.separator | default: 'separator' }}" aria-hidden="true">{{ separator }}</li>
+          <li class="{{ breadcrumb_config.css.item | default: 'breadcrumb-item' }}" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            {% if is_date %}
+              {% comment %} Date parts are not clickable {% endcomment %}
+              <span itemprop="name">{{ crumb_label }}</span>
+              <meta itemprop="item" content="{{ crumb_path | prepend: site.url }}" />
+            {% else %}
+              <a href="{{ crumb_path | prepend: site.baseurl }}" itemprop="item">
+                <span itemprop="name">{{ crumb_label }}</span>
+              </a>
+            {% endif %}
+            <meta itemprop="position" content="{{ position }}" />
+          </li>
+
+          {% assign position = position | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
+    {% if breadcrumb_config.show_current %}
+      {% comment %} Current page {% endcomment %}
+      <li class="{{ breadcrumb_config.css.separator | default: 'separator' }}" aria-hidden="true">{{ separator }}</li>
+      <li class="{{ breadcrumb_config.css.item | default: 'breadcrumb-item' }} {{ breadcrumb_config.css.active | default: 'active' }}" aria-current="page" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name">{{ page.title }}</span>
+        <meta itemprop="item" content="{{ page.url | absolute_url }}" />
+        <meta itemprop="position" content="{{ position }}" />
+      </li>
+    {% endif %}
+
+  </ol>
+</nav>
+
+<style>
+  .breadcrumbs {
+    padding: 0.5rem 0;
+    font-size: 0.875rem;
+    color: #6c757d;
+  }
+  .breadcrumb-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+  }
+  .breadcrumb-item {
+    display: inline;
+  }
+  .breadcrumb-item a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  .breadcrumb-item a:hover {
+    text-decoration: underline;
+  }
+  .breadcrumb-item.active {
+    color: #6c757d;
+  }
+  .separator {
+    padding: 0 0.5rem;
+    color: #6c757d;
+  }
+</style>
+
+{% endif %}

@@ -1,0 +1,70 @@
+# Website Template Configuration
+# This file contains all customizable site information
+# Edit this file to customize your website without changing code
+
+# Brand Information
+brand:
+  name: "Recomby.ai"
+  tagline: "AI Search Optimization & Agent API Infrastructure"
+  description: "Making you the best match in AI's eyes"
+  slogan: "Get Recommended by AI, Not Left Behind by the Times"
+  logo: "/img/logo.png"
+  favicon: "/img/favicon.ico"
+  about_image: "/img/about-ai-tree.jpg"
+
+# Website Information
+website:
+  url: "https://blog.recomby.ai"
+  baseurl: ""
+  language: "en"
+  locale: "en_US"
+  timezone: "UTC"
+
+# SEO Settings
+seo:
+  title: "Recomby.ai | AI Search Optimization Blog"
+  keywords: "Recomby.ai, AI Search Optimization, GEO, AIO, Agent API, llms.txt, schema, AI Recommendation"
+  og_image: "/img/og-image.jpg"
+  og_image_width: 1200
+  og_image_height: 630
+
+# Contact Information
+contact:
+  email: "contact@recomby.ai"
+  phone: ""
+  address: ""
+  support_email: ""
+
+# Company/Organization Information (for Schema.org)
+company:
+  legal_name: "Recomby.ai"
+  type: "Organization"  # Organization or Person
+  founded: "2024"
+  website: "https://recomby.ai"
+  description: "Recomby.ai is an innovative technology company specializing in AI Search Optimization (GEO/AIO) and Agent API Infrastructure."
+
+# Reading Settings
+reading:
+  words_per_minute: 200  # Average reading speed for English
+  words_per_minute_cjk: 200  # Average reading speed for Chinese/Japanese/Korean
+  show_reading_time: true
+  show_word_count: false
+
+# Related Posts Settings
+related_posts:
+  enabled: true
+  limit: 3
+  show_in_sidebar: true
+  show_at_bottom: true
+  same_category_weight: 10
+  same_tag_weight: 5
+
+# Features
+features:
+  blog: true
+  search: true
+  comments: false  # Set to true and configure disqus_username in _config.yml
+  newsletter: false
+  rss: true
+  sitemap: true
+  analytics: true

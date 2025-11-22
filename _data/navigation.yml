@@ -1,0 +1,37 @@
+# Navigation Configuration
+# Define your site navigation menus
+
+# Header Navigation
+# These links appear in the top navigation bar
+header:
+  - title: "Home"
+    url: "/"
+
+  - title: "Archive"
+    url: "/archive.html"
+
+  # Add more navigation items as needed
+  # - title: "Categories"
+  #   url: "/categories/"
+
+  # - title: "Resources"
+  #   url: "/resources/"
+
+# Footer Navigation (optional)
+# These links appear in the footer
+footer:
+  # - title: "Privacy Policy"
+  #   url: "/privacy/"
+
+  # - title: "Terms of Service"
+  #   url: "/terms/"
+
+  # - title: "Contact"
+  #   url: "/contact/"
+
+# External Links (optional)
+# Links to external resources
+external:
+  # - title: "Main Website"
+  #   url: "https://recomby.ai"
+  #   new_window: true

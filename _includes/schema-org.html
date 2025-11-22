@@ -1,0 +1,249 @@
+<!--
+  Schema.org JSON-LD Structured Data
+  Helps search engines and AI understand page content
+-->
+
+{% assign site_data = site.data.site %}
+{% assign company_data = site_data.company %}
+{% assign contact_data = site_data.contact %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "{{ company_data.type | default: 'Organization' }}",
+      "@id": "{{ site.url }}/#organization",
+      "name": "{{ company_data.legal_name | default: site.title }}",
+      "url": "{{ company_data.website | default: site.url }}",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ site.url }}{{ site_data.brand.logo | default: '/img/logo.png' }}",
+        "width": 1024,
+        "height": 1024
+      },
+      "description": "{{ company_data.description | default: site.description }}",
+      "email": "{{ contact_data.email | default: site.email }}",
+      {% if company_data.founded %}
+      "foundingDate": "{{ company_data.founded }}",
+      {% endif %}
+      "sameAs": [
+        {% assign first_platform = true %}
+        {% for platform in site.data.social.platforms %}
+          {% if platform[1].enabled and platform[1].url and platform[1].url != '' %}
+            {% unless first_platform %},{% endunless %}
+            {% assign first_platform = false %}
+        "{{ platform[1].url }}"
+          {% endif %}
+        {% endfor %}
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ site.url }}/#website",
+      "url": "{{ site.url }}",
+      "name": "{{ site.title }}",
+      "description": "{{ site.description }}",
+      "publisher": {
+        "@id": "{{ site.url }}/#organization"
+      },
+      "inLanguage": "{{ site_data.website.locale | default: 'en-US' }}"
+    }
+    {% if page.layout == 'post' %}
+    ,{
+      "@type": "BlogPosting",
+      "@id": "{{ site.url }}{{ page.url }}#article",
+      "headline": "{{ page.title }}",
+      "description": "{% if page.excerpt %}{{ page.excerpt | strip_html | truncate:200 }}{% else %}{{ page.description }}{% endif %}",
+      {% if page.featured_images %}
+      "image": [
+        {% for img in page.featured_images %}
+        "{{ site.url }}{{ img }}"{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ],
+      {% else %}
+      "image": {
+        "@type": "ImageObject",
+        "url": "{{ site.url }}{{ site_data.seo.og_image | default: '/img/og-image.jpg' }}",
+        "width": {{ site_data.seo.og_image_width | default: 1200 }},
+        "height": {{ site_data.seo.og_image_height | default: 630 }}
+      },
+      {% endif %}
+      "datePublished": "{{ page.date | date: '%Y-%m-%dT%H:%M:%SZ' }}",
+      {% if page.date_modified %}
+      "dateModified": "{{ page.date_modified | date: '%Y-%m-%dT%H:%M:%SZ' }}",
+      {% else %}
+      "dateModified": "{{ page.date | date: '%Y-%m-%dT%H:%M:%SZ' }}",
+      {% endif %}
+      {% assign word_count = content | word_count %}
+      {% if page.word_count %}
+        {% assign word_count = page.word_count %}
+      {% endif %}
+      "wordCount": {{ word_count }},
+      {% assign reading_minutes = content | reading_time %}
+      {% if page.reading_time %}
+        {% assign reading_minutes = page.reading_time %}
+      {% endif %}
+      "timeRequired": "PT{{ reading_minutes }}M",
+      {% assign author_id = page.author | default: 'recomby_team' %}
+      {% assign author_data = site.data.authors[author_id] %}
+      {% if author_data %}
+      "author": {
+        "@type": "{{ author_data.type | default: 'Organization' }}",
+        {% if author_data.type == 'Person' %}
+        "@id": "{{ site.url }}/author/{{ author_id }}/#person",
+        {% endif %}
+        "name": "{{ author_data.name | default: author_data.display_name }}",
+        {% if author_data.url or author_data.website %}
+        "url": "{{ author_data.url | default: author_data.website }}",
+        {% endif %}
+        {% if author_data.avatar %}
+        "image": "{{ site.url }}{{ author_data.avatar }}",
+        {% endif %}
+        {% if author_data.job_title %}
+        "jobTitle": "{{ author_data.job_title }}",
+        {% endif %}
+        {% if author_data.company and author_data.type == 'Person' %}
+        "worksFor": {
+          "@type": "Organization",
+          "name": "{{ author_data.company }}"
+        },
+        {% endif %}
+        "sameAs": [
+          {% assign first_link = true %}
+          {% for social in author_data.social %}
+            {% if social[1] and social[1] != '' %}
+              {% unless first_link %},{% endunless %}
+              {% assign first_link = false %}
+              {% if social[0] == 'twitter' %}
+          "https://twitter.com/{{ social[1] }}"
+              {% elsif social[0] == 'github' %}
+          "https://github.com/{{ social[1] }}"
+              {% elsif social[0] == 'linkedin' %}
+          "https://linkedin.com/{{ social[1] }}"
+              {% else %}
+          "{{ social[1] }}"
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        ]
+      },
+      {% else %}
+      "author": {
+        "@type": "Organization",
+        "name": "{{ page.author | default: 'Recomby Team' }}"
+      },
+      {% endif %}
+      "publisher": {
+        "@id": "{{ site.url }}/#organization"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ site.url }}{{ page.url }}"
+      },
+      {% if page.tags %}
+      "keywords": "{{ page.tags | join: ', ' }}",
+      {% endif %}
+      "articleSection": "{% if page.category %}{{ page.category }}{% else %}AI Search Optimization{% endif %}",
+      "inLanguage": "{{ site_data.website.locale | default: 'en-US' }}"
+    }
+    {% endif %}
+    {% if page.schema_faq %}
+    ,{
+      "@type": "FAQPage",
+      "@id": "{{ site.url }}{{ page.url }}#faq",
+      "mainEntity": [
+        {% for faq in page.schema_faq %}
+        {
+          "@type": "Question",
+          "name": "{{ faq.question }}",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "{{ faq.answer }}"
+          }
+        }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ]
+    }
+    {% endif %}
+    {% if page.schema_table %}
+    ,{
+      "@type": "Table",
+      "@id": "{{ site.url }}{{ page.url }}#table",
+      "about": "{{ page.schema_table.about }}",
+      "http://schema.org/caption": "{{ page.schema_table.caption }}"
+    }
+    {% endif %}
+    {% if page.schema_howto %}
+    ,{
+      "@type": "HowTo",
+      "@id": "{{ site.url }}{{ page.url }}#howto",
+      "name": "{{ page.schema_howto.name }}",
+      "description": "{{ page.schema_howto.description }}",
+      "step": [
+        {% for step in page.schema_howto.steps %}
+        {
+          "@type": "HowToStep",
+          "name": "{{ step.name }}",
+          "text": "{{ step.text }}",
+          "url": "{{ site.url }}{{ page.url }}#step{{ forloop.index }}"
+        }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ]
+    }
+    {% endif %}
+    {% if site.data.breadcrumbs.enabled and page.url != '/' %}
+    ,{
+      "@type": "BreadcrumbList",
+      "@id": "{{ site.url }}{{ page.url }}#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "{{ site.data.breadcrumbs.home_label | default: 'Home' }}",
+          "item": "{{ site.url }}/"
+        }
+        {% if page.breadcrumb_path %}
+          {% for crumb in page.breadcrumb_path %},
+          {
+            "@type": "ListItem",
+            "position": {{ forloop.index | plus: 1 }},
+            "name": "{{ crumb.label }}",
+            "item": "{{ site.url }}{{ crumb.url }}"
+          }
+          {% endfor %}
+        {% else %}
+          {% assign url_parts = page.url | split: '/' %}
+          {% assign crumb_path = '' %}
+          {% assign position = 2 %}
+          {% for part in url_parts %}
+            {% if part != '' and part != 'index.html' and forloop.last == false %}
+              {% assign crumb_path = crumb_path | append: '/' | append: part %}
+              {% assign crumb_label = part | replace: '-', ' ' | replace: '_', ' ' | capitalize %}
+              {% if site.data.breadcrumbs.custom_labels[part] %}
+                {% assign crumb_label = site.data.breadcrumbs.custom_labels[part] %}
+              {% endif %},
+          {
+            "@type": "ListItem",
+            "position": {{ position }},
+            "name": "{{ crumb_label }}",
+            "item": "{{ site.url }}{{ crumb_path }}"
+          }
+              {% assign position = position | plus: 1 %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        {% if site.data.breadcrumbs.show_current %},
+        {
+          "@type": "ListItem",
+          "position": {{ position }},
+          "name": "{{ page.title }}",
+          "item": "{{ site.url }}{{ page.url }}"
+        }
+        {% endif %}
+      ]
+    }
+    {% endif %}
+  ]
+}
+</script>

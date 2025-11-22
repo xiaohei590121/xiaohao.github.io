@@ -1,63 +1,244 @@
-[Hux Blog](https://huangxuan.me)
-================================
+# GEO-Optimized Blog Template
 
-> I never expected this to become popular.
+A clean, production-ready Jekyll blog template optimized for **AI Search Engines (GEO/AIO)** and generative AI discovery.
 
-![](http://huangxuan.me/img/blog-desktop.jpg)
+## Why This Template?
 
+This template is built for the future of search:
+- **Schema.org structured data** for AI understanding
+- **llms.txt** for AI crawler discovery
+- **robots.txt** optimized for AI bots (GPT, Claude, Perplexity, etc.)
+- **Dynamic sitemap** that auto-updates with new posts
+- **Open Graph** and **Twitter Card** for social sharing
+- **PWA-ready** with service worker caching
 
-[User Manual 👉](_doc/Manual.md)
---------------------------------------------------
+## Quick Start
 
-### Getting Started
+### 1. Configure Your Site
 
-1. You will need [Ruby](https://www.ruby-lang.org/en/) and [Bundler](https://bundler.io/) to use [Jekyll](https://jekyllrb.com/). Following [Using Jekyll with Bundler](https://jekyllrb.com/tutorials/using-jekyll-with-bundler/) to fullfill the enviromental requirement.
+Edit **`_config.yml`** with your information:
 
-2. Installed dependencies in the `Gemfile`:
+```yaml
+# Site Information
+title: Your Blog Title
+SEOTitle: Your SEO Title
+description: "Your description"
+keyword: "your, keywords, here"
+url: "https://yourdomain.com"
+email: your@email.com
 
-```sh
-$ bundle install 
+# Social Media
+github_username: your-github
+twitter_username: your-twitter
+
+# Sidebar
+sidebar-about-description: "Your description"
+sidebar-avatar: /img/your-avatar.jpg
+
+# Analytics (optional)
+ga_track_id: "UA-XXXXXXX-X"
+ga_domain: yourdomain.com
 ```
 
-3. Serve the website (`localhost:4000` by default):
+### 2. Create Blog Posts
 
-```sh
-$ bundle exec jekyll serve  # alternatively, npm start
+Add markdown files to **`_posts/`** folder with this format:
+
+**Filename:** `YYYY-MM-DD-your-post-title.md`
+
+**Frontmatter:**
+```yaml
+---
+layout: post
+title: "Your Post Title"
+subtitle: "Your subtitle"
+date: 2025-01-01 12:00:00
+author: "Author Name"
+header-img: "img/post-bg.jpg"
+tags:
+    - Tag1
+    - Tag2
+---
+
+Your post content here...
 ```
 
-### Development (Build From Source)
+### 3. (Optional) Add Schema.org Markup to Posts
 
-To modify the theme, you will need [Grunt](https://gruntjs.com/). There are numbers of tasks you can find in the `Gruntfile.js`, includes minifing JavaScript, compiling `.less` to `.css`, adding banners to keep the Apache 2.0 license intact, watching for changes, etc. 
+You can add structured data to individual posts for better AI understanding:
 
-Yes, they were inherited and are extremely old-fashioned. There is no modularization and transpilation, etc.
+#### FAQ Schema
+```yaml
+---
+title: "Your Post"
+schema_faq:
+  - question: "What is GEO?"
+    answer: "Generative Engine Optimization helps you rank in AI search results."
+  - question: "How does it work?"
+    answer: "By using structured data and AI-friendly markup."
+---
+```
 
-Critical Jekyll-related code are located in `_include/` and `_layouts/`. Most of them are [Liquid](https://github.com/Shopify/liquid/wiki) templates.
+#### HowTo Schema
+```yaml
+---
+title: "How to Setup Your Blog"
+schema_howto:
+  name: "Setup Blog for GEO"
+  description: "Step-by-step guide"
+  steps:
+    - name: "Step 1: Configure"
+      text: "Edit _config.yml with your information"
+    - name: "Step 2: Create Posts"
+      text: "Add markdown files to _posts/"
+---
+```
 
-This theme uses the default code syntax highlighter of jekyll, [Rouge](http://rouge.jneen.net/), which is compatible with Pygments theme so just pick any pygments theme css (e.g. from [here](http://jwarby.github.io/jekyll-pygments-themes/languages/javascript.html) and replace the content of `highlight.less`.
+#### Table Schema
+```yaml
+---
+title: "Comparison Table"
+schema_table:
+  about: "Comparison of AI Search Engines"
+  caption: "Feature comparison table"
+---
+```
 
+## Key Files and Their Purposes
 
-### Interesting to know more? Checkout the [full user manual](_doc/Manual.md)!
+### Configuration
+- **`_config.yml`** - Main site configuration (EDIT THIS!)
+- **`sitemap.xml`** - Auto-generated sitemap (updates automatically)
+- **`robots.txt`** - AI crawler permissions
+- **`llms.txt`** - AI-readable site description
 
+### Content
+- **`_posts/`** - Your blog posts (ADD YOUR POSTS HERE!)
+- **`about.html`** - About page
+- **`index.html`** - Homepage
+- **`archive.html`** - Blog archive page
 
-Other Resources
----------------
+### Templates
+- **`_layouts/`** - Page layouts (post, page, default)
+- **`_includes/`** - Reusable components
+  - `schema-org.html` - Schema.org JSON-LD markup
+  - `social-meta.html` - Open Graph & Twitter Card tags
+  - `head.html` - HTML head section
+  - `nav.html` - Navigation bar
+  - `footer.html` - Footer
 
-Ports
-- [**Hexo**](https://github.com/Kaijun/hexo-theme-huxblog) by @kaijun
-- [**React-SSR**](https://github.com/LucasIcarus/huxpro.github.io/tree/ssr) by @LucasIcarus
+### Images
+- **`img/logo.png`** - Your logo (replace with yours)
+- **`img/og-image.jpg`** - Social sharing image (1200x630px recommended)
+- **`img/favicon.ico`** - Browser favicon
+- **`img/apple-touch-icon.png`** - iOS home screen icon
+- **`img/*.jpg`** - Background images (customize as needed)
 
-[Starter/Boilerplate](https://github.com/huxpro/huxblog-boilerplate)
-- Out of date. Helps wanted for updating it on par with the main repo
+### Assets
+- **`css/`** - Stylesheets
+- **`js/`** - JavaScript files
+- **`fonts/`** - Icon fonts
+- **`pwa/`** - Progressive Web App configuration
 
-Translation
-- [🇨🇳  中文文档（有点过时）](https://github.com/Huxpro/huxpro.github.io/blob/master/_doc/README.zh.md)
+## GEO Optimization Features
 
+### 1. Schema.org Structured Data
+- ✅ Organization schema (fixed company info)
+- ✅ WebSite schema (blog info)
+- ✅ BlogPosting schema (article metadata)
+- ✅ Per-article custom schemas (FAQ, HowTo, Table)
 
-License
--------
+### 2. AI Crawler Access
+- ✅ `robots.txt` with explicit AI bot permissions
+- ✅ `llms.txt` for AI discovery
+- ✅ Dynamic sitemap with "always" changefreq
+- ✅ No crawl delays
 
-Apache License 2.0.
-Copyright (c) 2015-present Huxpro
+### 3. Social Sharing
+- ✅ Open Graph meta tags (Facebook, LinkedIn, WhatsApp, etc.)
+- ✅ Twitter Card (summary_large_image)
+- ✅ Unified brand image across all platforms
 
-Hux Blog is derived from [Clean Blog Jekyll Theme (MIT License)](https://github.com/BlackrockDigital/startbootstrap-clean-blog-jekyll/)
-Copyright (c) 2013-2016 Blackrock Digital LLC.
+### 4. Performance
+- ✅ Service Worker caching (PWA)
+- ✅ Compressed images
+- ✅ Minified CSS/JS
+- ✅ Offline support
+
+## Usage as a Template
+
+This is designed as a **reusable template**. To create a new blog:
+
+1. Fork or clone this repository
+2. Edit `_config.yml` with your site information
+3. Replace images in `img/` folder with your branding
+4. Delete example posts in `_posts/`
+5. Start writing your own posts!
+
+**That's it!** Everything else is pre-configured and optimized for GEO.
+
+## File Structure Overview
+
+```
+.
+├── _config.yml              # Main configuration (EDIT THIS)
+├── _posts/                  # Your blog posts (ADD POSTS HERE)
+├── _layouts/                # Page templates
+├── _includes/               # Reusable components
+│   ├── schema-org.html      # Structured data
+│   ├── social-meta.html     # Social sharing tags
+│   └── ...
+├── img/                     # Images (REPLACE WITH YOURS)
+│   ├── logo.png             # Your logo
+│   ├── og-image.jpg         # Social sharing image
+│   └── ...
+├── sitemap.xml              # Auto-generated sitemap
+├── robots.txt               # Crawler permissions
+├── llms.txt                 # AI crawler description
+└── index.html               # Homepage
+
+```
+
+## Technical Details
+
+- **Static Site Generator:** Jekyll
+- **Hosting:** GitHub Pages compatible
+- **CSS Framework:** Bootstrap
+- **Icons:** Glyphicons
+- **SEO:** Schema.org, Open Graph, Twitter Cards
+- **PWA:** Service Worker, Manifest
+
+## Customization Tips
+
+### Change Color Theme
+Edit `css/hux-blog.css` or `css/hux-blog.min.css`
+
+### Change Fonts
+Edit `_includes/head.html` to add custom font links
+
+### Add Custom Pages
+Create new `.html` files in root with frontmatter:
+```yaml
+---
+layout: page
+title: "Page Title"
+description: "Page description"
+header-img: "img/bg.jpg"
+---
+```
+
+### Modify Navigation
+Edit `_includes/nav.html`
+
+### Update Footer
+Edit `_includes/footer.html`
+
+## Support
+
+This template is based on Hux Blog theme, cleaned up and optimized for GEO.
+
+For issues or questions, please check the code comments or create an issue.
+
+---
+
+**Built for the AI-first future. Optimized for discovery, not just ranking.**

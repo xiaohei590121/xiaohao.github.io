@@ -1,0 +1,39 @@
+# Authors Configuration
+# Add author profiles here and reference them in posts using: author: author_id
+
+# Founder & Core Team
+zhengyucheng:
+  name: "ZhengYucheng"
+  display_name: "ZHENGYUCHENG"
+  type: "Person"
+  bio: "An experienced GEO and precision marketing expert, core founder of Recomby.ai. Specializing in AI search optimization, generative engine optimization, and data-driven growth strategies."
+  bio_zh: "丰富经验的GEO和精准营销专家，Recomby.ai核心创始人"
+  avatar: "/img/head.jpg"
+  email: "zheng@recomby.ai"
+  website: "https://recomby.ai"
+  job_title: "Co-Founder & GEO Expert"
+  company: "Recomby.ai"
+  location: ""
+  social:
+    twitter: "recomby_ai"
+    github: "recomby-ai"
+    linkedin: ""
+    website: "https://recomby.ai"
+
+# Default/Fallback Author
+recomby_team:
+  name: "Recomby Team"
+  display_name: "Recomby Team"
+  type: "Organization"  # Person or Organization
+  bio: "The Recomby.ai team is dedicated to helping businesses optimize for AI search and agent discovery."
+  avatar: "/img/about-ai-tree.jpg"
+  email: "contact@recomby.ai"
+  website: "https://recomby.ai"
+  job_title: ""
+  company: "Recomby.ai"
+  location: ""
+  social:
+    twitter: "recomby_ai"
+    github: "recomby-ai"
+    linkedin: ""
+    website: "https://recomby.ai"

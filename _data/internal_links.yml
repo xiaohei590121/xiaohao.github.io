@@ -1,0 +1,49 @@
+# Internal Link Optimization Configuration
+# Define keywords that should automatically link to specific pages
+
+# Auto-linking enabled globally
+enabled: false  # Set to true to enable automatic keyword linking
+
+# Keyword Link Rules
+# Format:
+#   "Keyword or phrase":
+#     url: "/path/to/page/"
+#     title: "Link title attribute"
+#     limit: 1  # Maximum times to link per page (default: 1)
+
+keywords:
+  "AI Search Optimization":
+    url: "/blog/2025-11-18-let-ai-recommend-your-solution/"
+    title: "Learn about AI Search Optimization"
+    limit: 1
+
+  "GEO":
+    url: "/blog/2025-11-18-let-ai-recommend-your-solution/"
+    title: "Generative Engine Optimization Guide"
+    limit: 1
+
+  "llms.txt":
+    url: "/llms.txt"
+    title: "View our llms.txt file"
+    limit: 1
+
+  # Add more keyword rules as needed
+  # "Schema.org":
+  #   url: "/guides/schema-markup/"
+  #   title: "Complete Schema.org Guide"
+  #   limit: 2
+
+# Exclusions
+# Pages or sections where auto-linking should not occur
+exclude:
+  - "404.html"
+  - "offline.html"
+
+# Elements to exclude from auto-linking
+exclude_elements:
+  - "h1"
+  - "h2"
+  - "h3"
+  - "code"
+  - "pre"
+  - "a"  # Don't add links inside existing links

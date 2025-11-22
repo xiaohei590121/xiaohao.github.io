@@ -1,0 +1,30 @@
+# Breadcrumb Navigation Configuration
+
+# Enable/disable breadcrumbs globally
+enabled: true
+
+# Home page label
+home_label: "Home"
+
+# Separator between breadcrumb items
+separator: "/"  # Options: / or >
+
+# Show current page in breadcrumbs
+show_current: true
+
+# Custom breadcrumb paths for specific sections
+# Format: path_prefix: label
+custom_labels:
+  blog: "Blog"
+  archive: "Archive"
+  category: "Category"
+  tag: "Tag"
+  author: "Author"
+
+# CSS classes for styling
+css:
+  wrapper: "breadcrumbs"
+  list: "breadcrumb-list"
+  item: "breadcrumb-item"
+  active: "active"
+  separator: "separator"

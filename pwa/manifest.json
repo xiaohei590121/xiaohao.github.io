@@ -1,7 +1,7 @@
 {
-  "name": "Hux Blog",
-  "short_name": "Hux Blog",
-  "description": "About an engineer & designer who loves web.",
+  "name": "Recomby.ai Blog",
+  "short_name": "Recomby Blog",
+  "description": "AI Search Optimization (GEO/AIO) & Agent API Infrastructure",
   "icons": [{
     "src": "icons/128.png",
     "sizes": "128x128",

@@ -1,0 +1,143 @@
+{% comment %}
+Author Card Component - Redesigned
+Inspired by modern author profile designs
+{% endcomment %}
+
+{% assign author_id = include.author | default: page.author | default: 'recomby_team' %}
+{% assign author = site.data.authors[author_id] %}
+
+{% comment %} Fallback: if author is a string (old format), use default author {% endcomment %}
+{% unless author %}
+  {% assign author = site.data.authors['recomby_team'] %}
+  {% assign author_name_override = author_id %}
+{% endunless %}
+
+{% if author %}
+<div class="author-card-modern" style="margin: 3rem 0; padding: 0; background: transparent; border: none;">
+  <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+
+    <!-- Author Avatar -->
+    {% if author.avatar %}
+    <div class="author-avatar-large" style="margin: 0 auto 1.5rem;">
+      <img src="{{ author.avatar | prepend: site.baseurl }}"
+           alt="{{ author.display_name | default: author.name }}"
+           style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid #f0f0f0; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+    </div>
+    {% endif %}
+
+    <!-- Author Name (Large Title) -->
+    <h2 class="author-name-title" style="font-size: 2.5rem; font-weight: 700; margin: 0 0 0.5rem 0; letter-spacing: 0.5px; text-transform: uppercase; color: #1a1a1a;">
+      {% if author_name_override %}
+        {{ author_name_override }}
+      {% else %}
+        {{ author.display_name | default: author.name }}
+      {% endif %}
+    </h2>
+
+    <!-- Job Title -->
+    {% if author.job_title %}
+    <div class="author-job-title" style="font-size: 1rem; color: #666; margin-bottom: 1.5rem; font-weight: 500;">
+      {% if author.job_title %}{{ author.job_title }}{% endif %}
+      {% if author.job_title and author.company %} · {% endif %}
+      {% if author.company %}{{ author.company }}{% endif %}
+    </div>
+    {% endif %}
+
+    <!-- Bio -->
+    {% if author.bio %}
+    <p class="author-bio-text" style="margin: 1.5rem 0; font-size: 1.05rem; line-height: 1.7; color: #333; max-width: 500px; margin-left: auto; margin-right: auto;">
+      {{ author.bio }}
+    </p>
+    {% endif %}
+
+    <!-- Social Share Buttons -->
+    <div class="author-social-share" style="margin-top: 2rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+      <span style="font-size: 0.9rem; color: #666; align-self: center; margin-right: 0.5rem; font-weight: 500;">Share</span>
+
+      {% if author.social %}
+        {% for social in author.social %}
+          {% if social[1] and social[1] != '' %}
+            {% if social[0] == 'twitter' %}
+              <a href="https://twitter.com/{{ social[1] }}"
+                 target="_blank"
+                 rel="noopener"
+                 aria-label="Twitter"
+                 style="display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: #fff; border: 2px solid #e0e0e0; border-radius: 8px; color: #1da1f2; font-size: 20px; transition: all 0.3s ease; text-decoration: none;"
+                 onmouseover="this.style.backgroundColor='#1da1f2'; this.style.color='#fff'; this.style.borderColor='#1da1f2';"
+                 onmouseout="this.style.backgroundColor='#fff'; this.style.color='#1da1f2'; this.style.borderColor='#e0e0e0';">
+                <i class="fa fa-twitter"></i>
+              </a>
+            {% elsif social[0] == 'linkedin' %}
+              <a href="https://linkedin.com/{{ social[1] }}"
+                 target="_blank"
+                 rel="noopener"
+                 aria-label="LinkedIn"
+                 style="display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: #fff; border: 2px solid #e0e0e0; border-radius: 8px; color: #0077b5; font-size: 20px; transition: all 0.3s ease; text-decoration: none;"
+                 onmouseover="this.style.backgroundColor='#0077b5'; this.style.color='#fff'; this.style.borderColor='#0077b5';"
+                 onmouseout="this.style.backgroundColor='#fff'; this.style.color='#0077b5'; this.style.borderColor='#e0e0e0';">
+                <i class="fa fa-linkedin"></i>
+              </a>
+            {% elsif social[0] == 'github' %}
+              <a href="https://github.com/{{ social[1] }}"
+                 target="_blank"
+                 rel="noopener"
+                 aria-label="GitHub"
+                 style="display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: #fff; border: 2px solid #e0e0e0; border-radius: 8px; color: #333; font-size: 20px; transition: all 0.3s ease; text-decoration: none;"
+                 onmouseover="this.style.backgroundColor='#333'; this.style.color='#fff'; this.style.borderColor='#333';"
+                 onmouseout="this.style.backgroundColor='#fff'; this.style.color='#333'; this.style.borderColor='#e0e0e0';">
+                <i class="fa fa-github"></i>
+              </a>
+            {% elsif social[0] == 'website' %}
+              <a href="{{ social[1] }}"
+                 target="_blank"
+                 rel="noopener"
+                 aria-label="Website"
+                 style="display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: #fff; border: 2px solid #e0e0e0; border-radius: 8px; color: #007bff; font-size: 20px; transition: all 0.3s ease; text-decoration: none;"
+                 onmouseover="this.style.backgroundColor='#007bff'; this.style.color='#fff'; this.style.borderColor='#007bff';"
+                 onmouseout="this.style.backgroundColor='#fff'; this.style.color='#007bff'; this.style.borderColor='#e0e0e0';">
+                <i class="fa fa-globe"></i>
+              </a>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+
+      <!-- Email Share -->
+      {% if author.email %}
+      <a href="mailto:?subject=Check out this article&body={{ page.url | absolute_url }}"
+         aria-label="Email"
+         style="display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: #fff; border: 2px solid #e0e0e0; border-radius: 8px; color: #6c757d; font-size: 20px; transition: all 0.3s ease; text-decoration: none;"
+         onmouseover="this.style.backgroundColor='#6c757d'; this.style.color='#fff'; this.style.borderColor='#6c757d';"
+         onmouseout="this.style.backgroundColor='#fff'; this.style.color='#6c757d'; this.style.borderColor='#e0e0e0';">
+        <i class="fa fa-envelope"></i>
+      </a>
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+
+<!-- Responsive Styles -->
+<style>
+@media (max-width: 768px) {
+  .author-name-title {
+    font-size: 2rem !important;
+  }
+  .author-bio-text {
+    font-size: 1rem !important;
+  }
+  .author-avatar-large img {
+    width: 120px !important;
+    height: 120px !important;
+  }
+  .author-social-share {
+    gap: 0.75rem !important;
+  }
+  .author-social-share a {
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 18px !important;
+  }
+}
+</style>
+{% endif %}

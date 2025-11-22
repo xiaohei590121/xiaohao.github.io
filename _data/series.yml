@@ -1,0 +1,27 @@
+# Article Series Configuration
+# Group related articles into series
+
+# Example series (uncomment and customize)
+# geo_basics:
+#   name: "GEO Fundamentals"
+#   description: "A comprehensive guide to Generative Engine Optimization from basics to advanced"
+#   posts:
+#     - slug: "what-is-geo"
+#       title: "What is GEO? Understanding AI Search Optimization"
+#     - slug: "geo-vs-seo"
+#       title: "GEO vs SEO: Key Differences"
+#     - slug: "geo-schema-markup"
+#       title: "Schema Markup for AI Search"
+#     - slug: "geo-content-strategy"
+#       title: "Content Strategy for AI Discovery"
+
+# schema_guide:
+#   name: "Schema.org Mastery"
+#   description: "Everything you need to know about implementing Schema.org structured data"
+#   posts:
+#     - slug: "schema-introduction"
+#       title: "Introduction to Schema.org"
+#     - slug: "schema-article"
+#       title: "Article and BlogPosting Schema"
+#     - slug: "schema-organization"
+#       title: "Organization Schema Best Practices"

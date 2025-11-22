@@ -1,0 +1,151 @@
+{% comment %}
+Related Posts Component
+Shows related articles based on category, tags, and manual selection
+{% endcomment %}
+
+{% assign related_config = site.data.site.related_posts %}
+{% if related_config.enabled != false %}
+
+{% assign max_related = related_config.limit | default: 3 %}
+{% assign related_posts = '' | split: '' %}
+
+{% comment %} 1. Check for manually specified related posts {% endcomment %}
+{% if page.related_posts %}
+  {% for post_url in page.related_posts limit: max_related %}
+    {% assign related_post = site.posts | where: "url", post_url | first %}
+    {% if related_post %}
+      {% assign related_posts = related_posts | push: related_post %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% comment %} 2. If we need more, check series {% endcomment %}
+{% if related_posts.size < max_related and page.series %}
+  {% assign series_data = site.data.series[page.series] %}
+  {% if series_data %}
+    {% for series_post in series_data.posts %}
+      {% if related_posts.size >= max_related %}{% break %}{% endif %}
+      {% assign series_post_obj = site.posts | where_exp: "post", "post.url contains series_post.slug" | first %}
+      {% if series_post_obj and series_post_obj.url != page.url %}
+        {% assign already_added = false %}
+        {% for rp in related_posts %}
+          {% if rp.url == series_post_obj.url %}
+            {% assign already_added = true %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+        {% unless already_added %}
+          {% assign related_posts = related_posts | push: series_post_obj %}
+        {% endunless %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endif %}
+
+{% comment %} 3. If we still need more, find by category and tags {% endcomment %}
+{% if related_posts.size < max_related %}
+  {% assign scored_posts = '' | split: '' %}
+
+  {% for post in site.posts %}
+    {% if post.url == page.url %}{% continue %}{% endif %}
+
+    {% comment %} Skip if already in related_posts {% endcomment %}
+    {% assign already_added = false %}
+    {% for rp in related_posts %}
+      {% if rp.url == post.url %}
+        {% assign already_added = true %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+    {% if already_added %}{% continue %}{% endif %}
+
+    {% assign score = 0 %}
+
+    {% comment %} Same category bonus {% endcomment %}
+    {% if post.category == page.category and page.category %}
+      {% assign category_weight = related_config.same_category_weight | default: 10 %}
+      {% assign score = score | plus: category_weight %}
+    {% endif %}
+
+    {% comment %} Same tags bonus {% endcomment %}
+    {% if page.tags %}
+      {% for tag in post.tags %}
+        {% if page.tags contains tag %}
+          {% assign tag_weight = related_config.same_tag_weight | default: 5 %}
+          {% assign score = score | plus: tag_weight %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
+    {% if score > 0 %}
+      {% assign scored_posts = scored_posts | push: post %}
+    {% endif %}
+  {% endfor %}
+
+  {% comment %} Sort by score (we'll just take first few for now) {% endcomment %}
+  {% for post in scored_posts limit: max_related %}
+    {% if related_posts.size >= max_related %}{% break %}{% endif %}
+    {% assign related_posts = related_posts | push: post %}
+  {% endfor %}
+{% endif %}
+
+{% comment %} 4. If still not enough, add latest posts {% endcomment %}
+{% if related_posts.size < max_related %}
+  {% for post in site.posts limit: max_related %}
+    {% if related_posts.size >= max_related %}{% break %}{% endif %}
+    {% if post.url == page.url %}{% continue %}{% endif %}
+
+    {% assign already_added = false %}
+    {% for rp in related_posts %}
+      {% if rp.url == post.url %}
+        {% assign already_added = true %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+    {% unless already_added %}
+      {% assign related_posts = related_posts | push: post %}
+    {% endunless %}
+  {% endfor %}
+{% endif %}
+
+{% comment %} Display related posts if we have any {% endcomment %}
+{% if related_posts.size > 0 %}
+<div class="related-posts" style="margin: 3rem 0; padding: 2rem; background: #f8f9fa; border-radius: 8px;">
+  <h3 style="margin-top: 0; margin-bottom: 1.5rem; font-size: 1.5em; color: #333;">
+    Related Articles
+  </h3>
+  <div class="related-posts-list">
+    {% for post in related_posts %}
+    <div class="related-post-item" style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; {% unless forloop.last %}border-bottom: 1px solid #dee2e6;{% endunless %}">
+      <h4 style="margin: 0 0 0.5rem 0;">
+        <a href="{{ post.url | prepend: site.baseurl }}" style="color: #007bff; text-decoration: none;">
+          {{ post.title }}
+        </a>
+      </h4>
+      {% if post.subtitle %}
+      <p style="margin: 0.25rem 0; color: #6c757d; font-size: 0.95em;">
+        {{ post.subtitle }}
+      </p>
+      {% endif %}
+      {% if post.excerpt %}
+      <p style="margin: 0.5rem 0 0 0; color: #555; font-size: 0.9em;">
+        {{ post.excerpt | strip_html | truncate: 120 }}
+      </p>
+      {% endif %}
+      <div style="margin-top: 0.5rem; font-size: 0.85em; color: #999;">
+        <i class="fa fa-calendar"></i> {{ post.date | date: "%B %-d, %Y" }}
+        {% if post.tags %}
+          <span style="margin-left: 1rem;">
+            <i class="fa fa-tags"></i>
+            {% for tag in post.tags limit: 3 %}
+              {{ tag }}{% unless forloop.last %}, {% endunless %}
+            {% endfor %}
+          </span>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+{% endif %}

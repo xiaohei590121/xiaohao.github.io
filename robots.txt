@@ -1,0 +1,83 @@
+# robots.txt for Recomby.ai Blog
+# We welcome all AI crawlers and search engines
+
+# Default: Allow all crawlers to access all content
+User-agent: *
+Allow: /
+Crawl-delay: 0
+
+# Sitemap
+Sitemap: https://blog.recomby.ai/sitemap.xml
+
+# AI-specific crawlers (explicitly welcome)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Omgilibot
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+# Traditional search engines (of course!)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# Important files for AI systems
+# These are explicitly accessible
+# /llms.txt - AI-readable blog information
+# /feed.xml - RSS feed
+# /search.json - Search index
+# /_posts/* - All blog articles
+
+# We practice what we preach about AI Search Optimization
+# All content is freely accessible for:
+# - Indexing and search
+# - Training and learning (with attribution)
+# - Citation and recommendation
+# - Analysis and summarization
