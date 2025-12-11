@@ -14,9 +14,9 @@
             {{ if eq (.Param "multilingual") true }}
                 {{ partial "multilingual-sel.html" . }}
 
-                <!-- Chinese Version -->
+                <!-- Korean Version -->
                 <div class="zh post-container">
-                    {{$file :=  "/about/index-zh.md"}}
+                    {{$file :=  "/about/index-ko.md"}}
                     {{ $file | readFile | markdownify}}
                 </div>
             
