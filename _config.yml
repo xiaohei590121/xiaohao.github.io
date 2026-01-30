@@ -3,8 +3,8 @@ title: Jedibobo Blog(Fixing Now, Need some time)
 SEOTitle: 刘毅波的博客 | Jedibobo Blog
 header-img: img/home-bg.jpg
 email: liuyibo0514@gmail.com
-description: "这里是 刘毅波 的个人博客，与你一起发现更大的世界 | 要做一个有 swag 的程序员"
-keyword: "黄玄, Hux黄玄, Hux, 鬼栈, huxpro, @huxpro, 黄玄的博客, Hux Blog, 博客, 个人网站, 互联网, Web, JavaScript, React, React Native, 前端, 设计"
+description: "这里是 刘毅波 的个人博客，与你一起发现更大的世界 | 赛博代号jedibobo"
+keyword: "刘毅波, jedibobo, 赛博代号jedibobo, 个人博客, 博客, 程序语言理论, 软件基础, Coq, 形式化验证, 编程语言, 类型系统, QuickCheck, C, C++, 数据表示, 技术笔记"
 url: "" # your host, for absolute URL
 baseurl: "" # for example, '/blog' if your blog hosted on 'host/blog'
 
@@ -74,7 +74,7 @@ netease_comment: false
 
 # Sidebar settings
 sidebar: true # whether or not using Sidebar.
-sidebar-about-description: "要做一个有 swag 的程序员 <br> "
+sidebar-about-description: "赛博代号jedibobo <br> "
 sidebar-avatar: https://github.com/Huxpro.png # use absolute URL, seeing it's used in both `/` and `/about/`
 
 # Featured Tags
