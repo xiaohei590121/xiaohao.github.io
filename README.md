@@ -1,3 +1,6 @@
+# 🔴Notice
+## This is Forked form https://github.com/Huxpro/huxpro.github.io
+
 [Hux Blog](https://huangxuan.me)
 ================================
 
